@@ -24,12 +24,12 @@
 
     - name: Install K3s
       become: true
-      ansible.builtin.command:
+      ansible.builtin.shell:
         cmd: bash <(curl -fsSL https://get.k3s.io)
       changed_when: false
 
     - name: Configure K3s as unprivileged user
-      ansible.builtin.command:
+      ansible.builtin.shell:
         cmd: |
           mkdir ~/.kube
           sudo kubectl config view --raw > ~/.kube/config
