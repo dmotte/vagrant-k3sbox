@@ -1,0 +1,38 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: Main play
+  hosts: all
+
+  pre_tasks:
+    - name: Check Ansible version
+      ansible.builtin.assert:
+        that: ansible_version.full is version_compare('2.9', '>=')
+        msg: The Ansible version is too old for this playbook
+
+  tasks:
+    - name: Execute apt update if the last one is more than 1 hour ago
+      become: true
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+      when: ansible_pkg_mgr == "apt"
+
+    - name: Ensure cURL is installed
+      become: true
+      ansible.builtin.package:
+        name: curl
+
+    - name: Install K3s
+      become: true
+      ansible.builtin.command:
+        cmd: bash <(curl -fsSL https://get.k3s.io)
+      changed_when: false
+
+    - name: Configure K3s as unprivileged user
+      ansible.builtin.command:
+        cmd: |
+          mkdir ~/.kube
+          sudo kubectl config view --raw > ~/.kube/config
+          chmod 600 ~/.kube/config
+          echo 'export KUBECONFIG=~/.kube/config' >> ~/.bashrc
+      changed_when: false
