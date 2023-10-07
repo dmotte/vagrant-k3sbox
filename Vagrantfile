@@ -11,13 +11,11 @@ Vagrant.configure("2") do |config|
         bash <(curl -fsSL https://get.k3s.io)
     SHELL
 
-    # TODO
-    # config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    #     mkdir ~/.kube
-    #     sudo kubectl config view --raw > ~/.kube/config
-    #     chmod 600 ~/.kube/config
-    #     echo 'export KUBECONFIG=~/.kube/config' >> ~/.bashrc
-    # SHELL
+    config.vm.provision "shell", privileged: false, inline: <<-SHELL
+        mkdir ~/.kube
+        install -m600 <(sudo kubectl config view --raw) ~/.kube/config
+        echo 'export KUBECONFIG="$HOME/.kube/config"' >> ~/.bashrc
+    SHELL
 
     config.ssh.insert_key = false # This is usually recommended for base boxes
 end
