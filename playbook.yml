@@ -24,9 +24,9 @@
 
     - name: Install K3s
       become: true
-      ansible.builtin.shell:
-        cmd: bash <(curl -fsSL https://get.k3s.io)
-      changed_when: false
+      ansible.builtin.shell: # noqa: command-instead-of-module
+        cmd: set -o pipefail && curl -fsSL https://get.k3s.io | /bin/bash
+        # creates: TODO
 
     - name: Configure K3s as unprivileged user
       ansible.builtin.shell:
