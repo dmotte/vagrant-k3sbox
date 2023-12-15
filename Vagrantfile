@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
     config.vm.hostname = "k3sbox"
 
     config.vm.provision "shell", inline: <<-SHELL
-        apt-get update && apt-get install -y curl
+        apt-get update; apt-get install -y curl
         bash <(curl -fsSL https://get.k3s.io)
     SHELL
 
