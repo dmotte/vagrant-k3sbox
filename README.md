@@ -9,7 +9,7 @@
 
 ## Usage
 
-To use this Vagrant box you can take inspiration from [the `test` folder of dmotte/vagrant-dockerbox](https://github.com/dmotte/vagrant-dockerbox/tree/main/test).
+See https://github.com/dmotte/misc/blob/main/examples/vagrant-ansible-provisioner for inspiration on how you could use this box.
 
 If you want to [install Helm](https://helm.sh/docs/intro/install/#from-script) inside the VM:
 
