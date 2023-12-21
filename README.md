@@ -1,6 +1,6 @@
 # vagrant-k3sbox
 
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/dmotte/vagrant-k3sbox/release.yml?branch=main&logo=github&style=flat-square)](https://github.com/dmotte/vagrant-k3sbox/actions)
+[![GitHub main workflow](https://img.shields.io/github/actions/workflow/status/dmotte/vagrant-k3sbox/main.yml?branch=main&logo=github&label=main&style=flat-square)](https://github.com/dmotte/vagrant-k3sbox/actions)
 [![Vagrant Cloud](https://img.shields.io/badge/vagrant-dmotte/k3sbox-blue?logo=vagrant&style=flat-square)](https://app.vagrantup.com/dmotte/boxes/k3sbox)
 
 :package: **Debian Vagrant box** with **K3s** configured as a **single-node**, installed using the official [Bash script](https://docs.k3s.io/quick-start).
