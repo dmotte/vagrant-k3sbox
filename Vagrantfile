@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
     SHELL
 
     config.vm.provision "shell", privileged: false, inline: <<-SHELL
-        install -Dm600 <(sudo kubectl config view --raw) ~/.kube/config
+        install -DTm600 <(sudo kubectl config view --raw) ~/.kube/config
         echo 'export KUBECONFIG="$HOME/.kube/config"' >> ~/.bashrc
     SHELL
 
